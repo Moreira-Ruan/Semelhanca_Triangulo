@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Semelhança de Triângulos</title>
+</head>
+<body>
+    <script>
+        function verificaLAL(ladoA1, ladoA2, anguloA, ladoB1, ladoB2, anguloB) {
+            const proporcaoLados = (ladoA1 / ladoB1) === (ladoA2 / ladoB2);
+            const anguloCongruente = anguloA === anguloB;
+            return proporcaoLados && anguloCongruente;
+        }
+
+        function verificaAA(anguloA1, anguloA2, anguloB1, anguloB2) {
+            const angulo1Congruente = anguloA1 === anguloB1;
+            const angulo2Congruente = anguloA2 === anguloB2;
+            return angulo1Congruente && angulo2Congruente;
+        }
+
+        function verificaLLL(ladoA1, ladoA2, ladoA3, ladoB1, ladoB2, ladoB3) {
+            const proporcaoLados1 = ladoA1 / ladoB1;
+            const proporcaoLados2 = ladoA2 / ladoB2;
+            const proporcaoLados3 = ladoA3 / ladoB3;
+            return proporcaoLados1 === proporcaoLados2 && proporcaoLados2 === proporcaoLados3;
+        }
+
+        function verificarSemelhanca() {
+            // Entrada dos dados dos triângulos
+            const ladoA1 = parseFloat(prompt("Informe o primeiro lado do triângulo A:"));
+            const ladoA2 = parseFloat(prompt("Informe o segundo lado do triângulo A:"));
+            const ladoA3 = parseFloat(prompt("Informe o terceiro lado do triângulo A (ou deixe em branco se não houver):"));
+            const anguloA1 = parseFloat(prompt("Informe o primeiro ângulo do triângulo A (ou deixe em branco se não houver):"));
+            const anguloA2 = parseFloat(prompt("Informe o segundo ângulo do triângulo A (ou deixe em branco se não houver):"));
+
+            const ladoB1 = parseFloat(prompt("Informe o primeiro lado do triângulo B:"));
+            const ladoB2 = parseFloat(prompt("Informe o segundo lado do triângulo B:"));
+            const ladoB3 = parseFloat(prompt("Informe o terceiro lado do triângulo B (ou deixe em branco se não houver):"));
+            const anguloB1 = parseFloat(prompt("Informe o primeiro ângulo do triângulo B (ou deixe em branco se não houver):"));
+            const anguloB2 = parseFloat(prompt("Informe o segundo ângulo do triângulo B (ou deixe em branco se não houver):"));
+
+            // Verificação de LAL (Lado-Ângulo-Lado)
+            if (!isNaN(anguloA1) && !isNaN(anguloB1) && verificaLAL(ladoA1, ladoA2, anguloA1, ladoB1, ladoB2, anguloB1)) {
+                alert("Os triângulos são semelhantes pelo critério LAL.");
+                return;
+            }
+
+            // Verificação de AA (Ângulo-Ângulo)
+            if (!isNaN(anguloA1) && !isNaN(anguloA2) && !isNaN(anguloB1) && !isNaN(anguloB2) && verificaAA(anguloA1, anguloA2, anguloB1, anguloB2)) {
+                alert("Os triângulos são semelhantes pelo critério AA.");
+                return;
+            }
+
+            // Verificação de LLL (Lado-Lado-Lado)
+            if (!isNaN(ladoA3) && !isNaN(ladoB3) && verificaLLL(ladoA1, ladoA2, ladoA3, ladoB1, ladoB2, ladoB3)) {
+                alert("Os triângulos são semelhantes pelo critério LLL.");
+                return;
+            }
+
+            alert("Os triângulos não são semelhantes pelos critérios LAL, AA ou LLL.");
+        }
+
+        // Executa a função para verificar semelhança
+        verificarSemelhanca();
+    </script>
+</body>
+</html>
